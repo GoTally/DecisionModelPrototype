@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    binding.pry
     render json: User.find_by_id(params[:id]), status: 200
   end
 
