@@ -10,7 +10,7 @@ class ChoicesController < ApplicationController
   end
 
   def create
-    @choice = Choice.new(params[:value])
+    @choice = Choice.new(choice_params)
 
     if @choice.save
       render json: @choice, status: 201
@@ -25,6 +25,10 @@ class ChoicesController < ApplicationController
   end
 
 private
+
+  def choice_params
+    params.permit(:value, :poll_id)
+  end
 
   def set_choice
     @choice = Choice.find_by_id(params[:id])
