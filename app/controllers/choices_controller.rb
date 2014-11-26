@@ -15,7 +15,7 @@ class ChoicesController < ApplicationController
     if @choice.save
       render json: @choice, status: 201
     else
-      render json: @choices.errors, status: 404
+      render json: @choices.errors, status: 422
     end
   end
 

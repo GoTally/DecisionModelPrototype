@@ -12,7 +12,7 @@ class PollsController < ApplicationController
     @poll = Poll.new(poll_params)
 
     if @poll.save
-      render json: @poll, status: 200
+      render json: @poll, status: 201
     else
       render json: @poll.errors, status: 422
     end
