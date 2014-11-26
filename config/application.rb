@@ -21,3 +21,5 @@ module DecisionModelPrototype
     # config.i18n.default_locale = :de
   end
 end
+
+GC::Profiler.enable
