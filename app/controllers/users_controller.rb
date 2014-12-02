@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
     if params[:first_name]
       @users = @users.where(first_name: params[:first_name])
-    else if params[:last_name]
+    elsif params[:last_name]
       @users = @users.where(last_name: params[:last_name])
     end
       
