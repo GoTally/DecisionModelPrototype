@@ -3,12 +3,10 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    if params[:first_name]
-      @users = @users.where(first_name: params[:first_name])
-    elsif params[:last_name]
-      @users = @users.where(last_name: params[:last_name])
+    if params[:first_name] && params[:last_name]
+      @users = @users.where(first_name: params[:first_name], last_name: params[:last_name])
     end
-      
+
     render json: @users, status: 200, callback: params[:callback]
   end
 
