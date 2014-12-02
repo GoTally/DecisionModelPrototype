@@ -1,7 +1,15 @@
 class UsersController < ApplicationController
 
   def index
-    render json: User.all, status: 200, callback: params[:callback]
+    @users = User.all
+
+    if params[:first_name]
+      @users = @users.where(first_name: params[:first_name])
+    else if params[:last_name]
+      @users = @users.where(last_name: params[:last_name])
+    end
+      
+    render json: @users, status: 200, callback: params[:callback]
   end
 
   def show
@@ -21,6 +29,6 @@ class UsersController < ApplicationController
 private
 
   def user_params
-    params.permit(:first_name, :last_name)
+    params.permit(:first_name, :last_name, :age, :gender)
   end
 end
