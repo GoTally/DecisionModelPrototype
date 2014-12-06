@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # New Relic monitoring
 gem 'newrelic_rpm'
+gem 'new_relic_ping'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
