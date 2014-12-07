@@ -11,7 +11,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: User.find_by_id(params[:id]), status: 200, callback: params[:callback]
+    if params[:polls]
+      render json: User.find_by_id(params[:id]).to_json(include: :polls), status: 200, callback: params[:callback]
+    else
+      render json: User.find_by_id(params[:id]), status: 200, callback: params[:callback]
+    end
   end
 
   def create
