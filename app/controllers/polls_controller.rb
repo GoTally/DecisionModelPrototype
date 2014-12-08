@@ -5,7 +5,12 @@ class PollsController < ApplicationController
   end
   
   def show
-    render json: Poll.find_by_id(params[:id]), status: 200, callback: params[:callback]
+    @poll = Poll.find_by_id(params[:id])
+    if params[:choices]
+      render json: @poll.to_json(include: :choices), status: 200, callback: params[:callback]
+    else
+      render json: @poll, status: 200, callback: params[:callback]
+    end
   end
 
   def create
