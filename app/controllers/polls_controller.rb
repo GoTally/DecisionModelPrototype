@@ -1,15 +1,16 @@
 class PollsController < ApplicationController
+  after_action :add_callback
 
   def index
-    render json: Poll.all, status: 200, callback: params[:callback]
+    render json: Poll.all, status: 200
   end
   
   def show
     @poll = Poll.find_by_id(params[:id])
     if params[:choices]
-      render json: @poll.to_json(include: :choices), status: 200, callback: params[:callback]
+      render json: @poll.to_json(include: :choices)
     else
-      render json: @poll, status: 200, callback: params[:callback]
+      render json: @poll, status: 200
     end
   end
 
@@ -17,9 +18,9 @@ class PollsController < ApplicationController
     @poll = Poll.new(poll_params)
 
     if @poll.save
-      render json: @poll, status: 201, callback: params[:callback]
+      render json: @poll, status: 201
     else
-      render json: @poll.errors, status: 422, callback: params[:callback]
+      render json: @poll.errors, status: 422
     end
   end
 

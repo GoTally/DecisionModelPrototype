@@ -1,27 +1,28 @@
 class ChoicesController < ApplicationController
   before_action :set_choice, only: [:show, :destroy]
+  after_action :add_callback
   
   def index
-    render json: Choice.all, status: 200, callback: params[:callback]
+    render json: Choice.all, status: 200
   end
   
   def show
-    render json: @choice, status: 200, callback: params[:callback]
+    render json: @choice, status: 200
   end
 
   def create
     @choice = Choice.new(choice_params)
 
     if @choice.save
-      render json: @choice, status: 201, callback: params[:callback]
+      render json: @choice, status: 201
     else
-      render json: @choices.errors, status: 422, callback: params[:callback]
+      render json: @choices.errors, status: 422
     end
   end
 
   def destroy
     @choice.destroy
-    head :no_content, callback: params[:callback]
+    head :no_content
   end
 
 private

@@ -1,35 +1,36 @@
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :update, :destroy]
+  after_action :add_callback
 
   def index
-    render json: Vote.all, status: 200, callback: params[:callback]
+    render json: Vote.all, status: 200
   end
 
   def show
-    render json: @vote, status: 200, callback: params[:callback]
+    render json: @vote, status: 200
   end
 
   def create
     @vote = Vote.new(vote_params)
 
     if @vote.save
-      render json: @vote, status: 201, callback: params[:callback]
+      render json: @vote, status: 201
     else
-      render json: @vote.errors, status: 422, callback: params[:callback]
+      render json: @vote.errors, status: 422
     end
   end
 
   def update
     if @vote.update(vote_params)
-      render @vote, status: 200, callback: params[:callback]
+      render @vote, status: 200
     else
-      render @vote.errors, status: 422, callback: params[:callback]
+      render @vote.errors, status: 422
     end
   end
 
   def destroy
     @vote.destroy
-    head :no_content, callback: params[:callback]
+    head :no_content
   end
 
 private
