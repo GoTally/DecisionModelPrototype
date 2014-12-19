@@ -1,30 +1,31 @@
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :update, :destroy]
+  before_action :set_votes, only: :index
   after_action :add_callback
 
+  respond_to :json
+
   def index
-    render json: Vote.all, status: 200
   end
 
   def show
-    render json: @vote, status: 200
   end
 
   def create
     @vote = Vote.new(vote_params)
 
     if @vote.save
-      render json: @vote, status: 201
+      respond_with(@vote)
     else
-      render json: @vote.errors, status: 422
+      respond_with(@vote, status: 422)
     end
   end
 
   def update
     if @vote.update(vote_params)
-      render @vote, status: 200
+      respond_with(@vote)
     else
-      render @vote.errors, status: 422
+      respond_with(@vote, status: 422)
     end
   end
 
@@ -41,5 +42,9 @@ private
 
   def set_vote
     @vote = Vote.find_by_id(params[:id])
+  end
+
+  def set_votes
+    @votes = Vote.all
   end
 end
