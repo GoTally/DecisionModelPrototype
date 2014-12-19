@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_users, only: :index
   before_action :set_user, only: :show
-  after_action :add_callback
 
   respond_to :json
 

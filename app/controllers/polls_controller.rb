@@ -1,7 +1,6 @@
 class PollsController < ApplicationController
   before_action :set_poll, only: :show
   before_action :set_polls, only: :index
-  after_action :add_callback
 
   respond_to :json
 

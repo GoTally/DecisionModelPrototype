@@ -1,7 +1,6 @@
 class ChoicesController < ApplicationController
   before_action :set_choice, only: [:show, :destroy]
   before_action :set_choices, only: :index
-  after_action :add_callback
 
   respond_to :json
   

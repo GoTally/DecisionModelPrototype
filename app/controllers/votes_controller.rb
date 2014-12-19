@@ -1,7 +1,6 @@
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :update, :destroy]
   before_action :set_votes, only: :index
-  after_action :add_callback
 
   respond_to :json
 
