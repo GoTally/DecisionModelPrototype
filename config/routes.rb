@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   resources :votes, except: [:new, :edit], defaults: {format: 'json'}
   resources :voters, only: [:create, :index, :show], defaults: {format: 'json'}
 
-  # New Relic ping
-  mount NewRelicPing::Engine => '/status'
+  # Uptime check
+  get '/status', to: 'health#status', defaults: {format: 'text'}
 end
