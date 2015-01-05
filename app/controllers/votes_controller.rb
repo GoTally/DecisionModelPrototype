@@ -5,6 +5,8 @@ class VotesController < ApplicationController
   respond_to :json
 
   def index
+    @votes = params[:poll_id] ? @votes.where(poll_id: params[:poll_id]) : @votes
+    @votes = params[:user_id] ? @votes.where(user_id: params[:user_id]) : @votes
   end
 
   def show
