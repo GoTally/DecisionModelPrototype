@@ -36,7 +36,7 @@ class VotesController < ApplicationController
 private
 
   def vote_params
-    params.permit(:choice_id, :user_id)
+    params.permit(:choice_id, :user_id, :poll_id)
   end
 
   def set_vote
