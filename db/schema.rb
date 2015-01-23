@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105040610) do
+ActiveRecord::Schema.define(version: 20150123000457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(version: 20150105040610) do
     t.string   "title"
     t.string   "description"
     t.string   "status"
-    t.datetime "expiration_date"
     t.integer  "creator_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "duration"
   end
 
   add_index "polls", ["creator_user_id"], name: "index_polls_on_creator_user_id", using: :btree
