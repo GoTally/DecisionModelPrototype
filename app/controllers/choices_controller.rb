@@ -5,6 +5,10 @@ class ChoicesController < ApplicationController
   respond_to :json
   
   def index
+    # This needs to be come a nested resource
+    if params[:poll_id]
+      @choices = @choices.where(poll_id: params[:poll_id])
+    end
   end
   
   def show
